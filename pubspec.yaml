@@ -14,6 +14,7 @@ dependencies:
       url: https://github.com/Maullin1996/atomic_design.git
       ref: main
   url_launcher: ^6.3.1
+  youtube_player_iframe: ^6.0.2
 
 dev_dependencies:
   flutter_test:
@@ -25,7 +26,7 @@ flutter:
 
   assets:
     - assets/config/app_config.json
-    - assets/images/avatar.jpg
+    - assets/images/
 
   fonts:
     - family: Inter

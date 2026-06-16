@@ -2,7 +2,9 @@ import 'package:atomic_design/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/layout/breakpoints.dart';
 import 'package:portfolio/layout/portfolio_section.dart';
+import 'package:portfolio/sections/about_section.dart';
 import 'package:portfolio/sections/hero_section.dart';
+import 'package:portfolio/sections/projects_section.dart';
 import 'package:portfolio/sections/section_placeholder.dart';
 import 'package:portfolio/theme/theme_controller.dart';
 import 'package:portfolio/widgets/nav_bar.dart';
@@ -61,13 +63,7 @@ class _PortfolioShellState extends State<PortfolioShell> {
                       for (final section in PortfolioSection.values)
                         KeyedSubtree(
                           key: _sectionKeys[section],
-                          child: section == PortfolioSection.home
-                              ? HeroSection(
-                                  onViewProjects: () => _scrollToSection(
-                                    PortfolioSection.projects,
-                                  ),
-                                )
-                              : SectionPlaceholder(section: section),
+                          child: _buildSection(section),
                         ),
                     ],
                   ),
@@ -79,6 +75,15 @@ class _PortfolioShellState extends State<PortfolioShell> {
       },
     );
   }
+
+  Widget _buildSection(PortfolioSection section) => switch (section) {
+    PortfolioSection.home => HeroSection(
+      onViewProjects: () => _scrollToSection(PortfolioSection.projects),
+    ),
+    PortfolioSection.projects => const ProjectsSection(),
+    PortfolioSection.about => const AboutSection(),
+    _ => SectionPlaceholder(section: section),
+  };
 
   Widget _buildDrawer() {
     return AppDrawer(

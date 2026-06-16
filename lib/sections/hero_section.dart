@@ -163,7 +163,14 @@ class _HeroText extends StatelessWidget {
             alignment: isDesktop ? WrapAlignment.start : WrapAlignment.center,
             spacing: tokens.spacing.xSmall,
             runSpacing: tokens.spacing.xSmall,
-            children: [for (final tech in stack) AppChip(label: tech,backgroundColor: colors.primary, textColor: colors.onPrimary)],
+            children: [
+              for (final tech in stack)
+                AppChip(
+                  label: tech,
+                  backgroundColor: colors.primary,
+                  textColor: colors.onPrimary,
+                ),
+            ],
           ),
         ),
         SizedBox(height: tokens.spacing.large),
