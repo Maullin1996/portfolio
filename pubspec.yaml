@@ -25,6 +25,7 @@ flutter:
 
   assets:
     - assets/config/app_config.json
+    - assets/images/avatar.jpg
 
   fonts:
     - family: Inter
