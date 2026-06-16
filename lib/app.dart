@@ -33,9 +33,16 @@ class _PortfolioAppState extends State<PortfolioApp> {
           // AppThemeProvider must live *inside* MaterialApp (not wrap it) so
           // that Theme.of(context) inside it resolves the brightness
           // MaterialApp just set — see atomic_design's own test_utils.dart.
-          home: AppThemeProvider(
-            child: PortfolioShell(themeController: _themeController),
-          ),
+          //
+          // It's wired via `builder`, not `home`, because `builder` wraps the
+          // whole Navigator (incl. its Overlay), while `home` only wraps the
+          // initial route's content. Dialogs/routes pushed via showDialog are
+          // inserted into that Overlay, *outside* of `home` — AppChip/AppCard
+          // widgets used inside a dialog couldn't find the provider until
+          // this moved here (e.g. the Proyectos demo video dialog).
+          builder: (context, child) =>
+              AppThemeProvider(child: child ?? const SizedBox.shrink()),
+          home: PortfolioShell(themeController: _themeController),
         );
       },
     );
