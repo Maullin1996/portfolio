@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:portfolio/sections/contact_section.dart';
 
 import 'test_helpers.dart';
 
@@ -8,7 +9,7 @@ void main() {
     tester,
   ) async {
     addTearDown(tester.view.reset);
-    await pumpPortfolioApp(tester, const Size(390, 4400));
+    await pumpSection(tester, const ContactSection(), const Size(390, 800));
     expect(tester.takeException(), isNull);
 
     for (final label in ['WhatsApp', 'LinkedIn', 'Email', 'GitHub']) {
@@ -20,7 +21,7 @@ void main() {
     tester,
   ) async {
     addTearDown(tester.view.reset);
-    await pumpPortfolioApp(tester, const Size(1280, 3200));
+    await pumpSection(tester, const ContactSection(), const Size(1280, 600));
     expect(tester.takeException(), isNull);
   });
 }

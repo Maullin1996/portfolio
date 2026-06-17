@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:portfolio/sections/projects_section.dart';
 
 import 'test_helpers.dart';
 
@@ -8,7 +9,7 @@ void main() {
     tester,
   ) async {
     addTearDown(tester.view.reset);
-    await pumpPortfolioApp(tester, const Size(390, 1600));
+    await pumpSection(tester, const ProjectsSection(), const Size(390, 1600));
     expect(tester.takeException(), isNull);
   });
 
@@ -16,7 +17,11 @@ void main() {
     tester,
   ) async {
     addTearDown(tester.view.reset);
-    await pumpPortfolioApp(tester, const Size(1280, 1200));
+    await pumpSection(
+      tester,
+      const ProjectsSection(),
+      const Size(1280, 1200),
+    );
     expect(tester.takeException(), isNull);
   });
 }

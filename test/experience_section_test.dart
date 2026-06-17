@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:portfolio/sections/experience_section.dart';
 
 import 'test_helpers.dart';
 
@@ -8,7 +9,11 @@ void main() {
     tester,
   ) async {
     addTearDown(tester.view.reset);
-    await pumpPortfolioApp(tester, const Size(390, 3200));
+    await pumpSection(
+      tester,
+      const ExperienceSection(),
+      const Size(390, 3200),
+    );
     expect(tester.takeException(), isNull);
 
     // Regression check: AppText always sets overflow: ellipsis, so any
@@ -32,7 +37,11 @@ void main() {
     tester,
   ) async {
     addTearDown(tester.view.reset);
-    await pumpPortfolioApp(tester, const Size(1280, 2400));
+    await pumpSection(
+      tester,
+      const ExperienceSection(),
+      const Size(1280, 2400),
+    );
     expect(tester.takeException(), isNull);
   });
 }
