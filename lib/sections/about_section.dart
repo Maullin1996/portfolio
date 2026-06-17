@@ -55,7 +55,10 @@ class AboutSection extends StatelessWidget {
     final colors = AppColors.of(context);
 
     final screenWidth = MediaQuery.sizeOf(context).width;
-    final availableWidth = screenWidth - tokens.spacing.large * 2;
+    final horizontalPadding = screenWidth < 450
+        ? tokens.spacing.xSmall
+        : tokens.spacing.large;
+    final availableWidth = screenWidth - horizontalPadding * 2;
     final columns = _columnCount(screenWidth);
     final blockWidth =
         (availableWidth - (columns - 1) * tokens.spacing.smallMedium) /
@@ -65,7 +68,7 @@ class AboutSection extends StatelessWidget {
       width: double.infinity,
       color: colors.background,
       padding: EdgeInsets.symmetric(
-        horizontal: tokens.spacing.large,
+        horizontal: horizontalPadding,
         vertical: tokens.spacing.extraLarge,
       ),
       child: Column(
@@ -83,7 +86,7 @@ class AboutSection extends StatelessWidget {
                       paragraph,
                       color: colors.textSecondary,
                       textAlign: TextAlign.center,
-                      maxLines: 6,
+                      maxLines: 10,
                     ),
                   ),
               ],

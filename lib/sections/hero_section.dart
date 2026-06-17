@@ -24,7 +24,10 @@ class HeroSection extends StatelessWidget {
     // hands the child a loose-to-unbounded width, so a LayoutBuilder here
     // would just see an unusable max and the text below would never wrap.
     final screenWidth = MediaQuery.sizeOf(context).width;
-    final availableWidth = screenWidth - tokens.spacing.large * 2;
+    final horizontalPadding = screenWidth < 450
+        ? tokens.spacing.xSmall
+        : tokens.spacing.large;
+    final availableWidth = screenWidth - horizontalPadding * 2;
     final textMaxWidth = isDesktop
         ? availableWidth - avatar.size - tokens.spacing.extraLarge
         : availableWidth;
@@ -34,7 +37,7 @@ class HeroSection extends StatelessWidget {
       constraints: const BoxConstraints(minHeight: 560),
       color: colors.background,
       padding: EdgeInsets.symmetric(
-        horizontal: tokens.spacing.large,
+        horizontal: horizontalPadding,
         vertical: tokens.spacing.extraLarge,
       ),
       alignment: Alignment.center,
@@ -78,12 +81,19 @@ class _Avatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = AppColors.of(context);
+    // The source photo is ~1900x2300 — without a cache size Flutter decodes
+    // it at full resolution every time, which visibly hitches the hero's
+    // scroll-reveal fade-in on real devices.
+    final devicePixelRatio = MediaQuery.devicePixelRatioOf(context);
+    final cacheSize = (size * devicePixelRatio).round();
 
     return ClipOval(
       child: AppAssetsImage(
-        path: 'assets/images/avatar.jpg',
+        path: 'assets/images/avatar.webp',
         widthImage: size,
         heightImage: size,
+        cacheWidth: cacheSize,
+        cacheHeight: cacheSize,
         fit: BoxFit.cover,
         errorWidget: Icon(
           Icons.person,
@@ -131,6 +141,7 @@ class _HeroText extends StatelessWidget {
           child: AppText.h1(
             'Mauricio Llanos',
             textAlign: align,
+            maxLines: 2,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -139,6 +150,7 @@ class _HeroText extends StatelessWidget {
           constraints: constraints,
           child: AppText.h4(
             'Desarrollador Flutter',
+            maxLines: 2,
             color: colors.primary,
             textAlign: align,
           ),
@@ -152,7 +164,7 @@ class _HeroText extends StatelessWidget {
             'foco en digitalizar procesos reales y automatizar operaciones.',
             color: colors.textSecondary,
             textAlign: align,
-            maxLines: 4,
+            maxLines: 8,
             softWrap: true,
           ),
         ),

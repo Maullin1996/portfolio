@@ -26,7 +26,7 @@ class ProjectsSection extends StatelessWidget {
           'sobre un servidor en Hetzner.',
       stack: ['Flutter', 'Firebase', 'Docker', 'Raspberry Pi'],
       githubUrl: 'https://github.com/Maullin1996/whatsapp-backup-dashboard',
-      logoAsset: 'assets/images/whatsapp_dash_board_logo.png',
+      logoAsset: 'assets/images/whatsapp_dash_board_logo.webp',
       youtubeVideoId: 'ULHUtMTEWQU',
     ),
     Project(
@@ -36,7 +36,7 @@ class ProjectsSection extends StatelessWidget {
           'costos, reportes en PDF y operación 100% offline con SQLite.',
       stack: ['Flutter', 'SQLite', 'PDF'],
       githubUrl: 'https://github.com/Maullin1996/mecca-invoicing-app',
-      logoAsset: 'assets/images/mecca_logo.png',
+      logoAsset: 'assets/images/mecca_logo.webp',
       youtubeVideoId: '8Q86RFpOHBo',
     ),
     Project(
@@ -47,17 +47,17 @@ class ProjectsSection extends StatelessWidget {
           'control de calidad.',
       stack: ['Flutter', 'Riverpod', 'Firebase'],
       githubUrl: 'https://github.com/Maullin1996/panelapp-trazabilidad',
-      logoAsset: 'assets/images/panelapp_logo.png',
+      logoAsset: 'assets/images/panelapp_logo.webp',
       youtubeVideoId: 'enNVjhjFtxQ',
     ),
     Project(
-      title: 'atomic_design',
+      title: 'Atomic Design',
       description:
           'El design system propio que usé para construir este portafolio: '
           'átomos, moléculas y organismos reutilizables en Flutter.',
       stack: ['Flutter', 'Design System'],
       githubUrl: 'https://github.com/Maullin1996/atomic_design',
-      logoAsset: 'assets/images/atomic_design_logo.png',
+      logoAsset: 'assets/images/atomic_design_logo.webp',
       // Sin demo todavía — el botón de reproducción queda visible pero
       // deshabilitado hasta que grabemos el video.
     ),
@@ -79,7 +79,10 @@ class ProjectsSection extends StatelessWidget {
     final colors = AppColors.of(context);
 
     final screenWidth = MediaQuery.sizeOf(context).width;
-    final availableWidth = screenWidth - tokens.spacing.large * 2;
+    final horizontalPadding = screenWidth < 450
+        ? tokens.spacing.xSmall
+        : tokens.spacing.large;
+    final availableWidth = screenWidth - horizontalPadding * 2;
     final columns = _columnCount(screenWidth);
     final cardWidth =
         (availableWidth - (columns - 1) * tokens.spacing.smallMedium) /
@@ -89,7 +92,7 @@ class ProjectsSection extends StatelessWidget {
       width: double.infinity,
       color: colors.surfaceMid,
       padding: EdgeInsets.symmetric(
-        horizontal: tokens.spacing.large,
+        horizontal: horizontalPadding,
         vertical: tokens.spacing.extraLarge,
       ),
       child: Column(
@@ -123,6 +126,9 @@ class _ProjectCard extends StatelessWidget {
     final tokens = AppTokens.of(context);
     final colors = AppColors.of(context);
     final hasDemo = project.youtubeVideoId != null;
+    // Source logos run up to ~1450x1460 for a 40x40 thumbnail — decoding at
+    // full resolution on every reveal is what causes the scroll-in jank.
+    final logoCacheSize = (40 * MediaQuery.devicePixelRatioOf(context)).round();
 
     return AppCard(
       padding: EdgeInsets.all(tokens.spacing.smallMedium),
@@ -138,6 +144,8 @@ class _ProjectCard extends StatelessWidget {
                   path: project.logoAsset,
                   widthImage: 40,
                   heightImage: 40,
+                  cacheWidth: logoCacheSize,
+                  cacheHeight: logoCacheSize,
                   fit: BoxFit.cover,
                   errorWidget: Icon(
                     Icons.apps,
@@ -151,6 +159,7 @@ class _ProjectCard extends StatelessWidget {
                 child: AppText.h6(
                   project.title,
                   fontWeight: FontWeight.w600,
+                  maxLines: 2,
                 ),
               ),
             ],
@@ -159,14 +168,14 @@ class _ProjectCard extends StatelessWidget {
           AppText.body(
             project.description,
             color: colors.textSecondary,
-            maxLines: 4,
+            maxLines: 6,
           ),
           SizedBox(height: tokens.spacing.small),
           Wrap(
             spacing: tokens.spacing.xSmall,
             runSpacing: tokens.spacing.xSmall,
             children: [
-              for (final tech in project.stack) AppChip(label: tech),
+              for (final tech in project.stack) AppChip(label: tech, backgroundColor: colors.primary, textColor: colors.onPrimary,),
             ],
           ),
           SizedBox(height: tokens.spacing.small),
@@ -177,6 +186,7 @@ class _ProjectCard extends StatelessWidget {
           Wrap(
             spacing: tokens.spacing.xSmall,
             runSpacing: tokens.spacing.xSmall,
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               AppButtons(
                 type: ButtonType.primaryImageButton,
@@ -188,7 +198,7 @@ class _ProjectCard extends StatelessWidget {
                 child: AppButtons(
                   type: ButtonType.primaryIconButton,
                   icon: Icons.play_circle_fill,
-                  iconSize: 55,
+                  iconSize: 60,
                   color: hasDemo ? Colors.red : colors.textDisabled,
                   onPressed: hasDemo
                       ? () => _showDemo(context, project)
