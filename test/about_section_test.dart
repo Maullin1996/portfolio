@@ -1,25 +1,14 @@
-import 'package:atomic_design/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:portfolio/app.dart';
 
-Future<void> _pumpApp(WidgetTester tester, Size size) async {
-  await AtomicDesignConfig.initializeFromAsset(
-    'assets/config/app_config.json',
-  );
-  await tester.binding.setSurfaceSize(size);
-  tester.view.physicalSize = size;
-  tester.view.devicePixelRatio = 1.0;
-  await tester.pumpWidget(const PortfolioApp());
-  await tester.pumpAndSettle();
-}
+import 'test_helpers.dart';
 
 void main() {
   testWidgets('about section at mobile width does not overflow', (
     tester,
   ) async {
     addTearDown(tester.view.reset);
-    await _pumpApp(tester, const Size(390, 2400));
+    await pumpPortfolioApp(tester, const Size(390, 2400));
     expect(tester.takeException(), isNull);
   });
 
@@ -27,7 +16,7 @@ void main() {
     tester,
   ) async {
     addTearDown(tester.view.reset);
-    await _pumpApp(tester, const Size(1280, 1800));
+    await pumpPortfolioApp(tester, const Size(1280, 1800));
     expect(tester.takeException(), isNull);
   });
 }

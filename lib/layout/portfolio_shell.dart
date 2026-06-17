@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/layout/breakpoints.dart';
 import 'package:portfolio/layout/portfolio_section.dart';
 import 'package:portfolio/sections/about_section.dart';
+import 'package:portfolio/sections/contact_section.dart';
+import 'package:portfolio/sections/experience_section.dart';
 import 'package:portfolio/sections/hero_section.dart';
 import 'package:portfolio/sections/projects_section.dart';
-import 'package:portfolio/sections/section_placeholder.dart';
 import 'package:portfolio/theme/theme_controller.dart';
 import 'package:portfolio/widgets/nav_bar.dart';
+import 'package:portfolio/widgets/reveal_on_scroll.dart';
 
 /// The single-page scroll shell: nav bar (or drawer on mobile) + a vertical
 /// stack of sections. Nav taps scroll smoothly to the matching section.
@@ -63,7 +65,10 @@ class _PortfolioShellState extends State<PortfolioShell> {
                       for (final section in PortfolioSection.values)
                         KeyedSubtree(
                           key: _sectionKeys[section],
-                          child: _buildSection(section),
+                          child: RevealOnScroll(
+                            key: ValueKey('reveal-${section.name}'),
+                            child: _buildSection(section),
+                          ),
                         ),
                     ],
                   ),
@@ -82,7 +87,8 @@ class _PortfolioShellState extends State<PortfolioShell> {
     ),
     PortfolioSection.projects => const ProjectsSection(),
     PortfolioSection.about => const AboutSection(),
-    _ => SectionPlaceholder(section: section),
+    PortfolioSection.experience => const ExperienceSection(),
+    PortfolioSection.contact => const ContactSection(),
   };
 
   Widget _buildDrawer() {

@@ -3,8 +3,9 @@ import 'dart:async';
 import 'package:atomic_design/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:portfolio/app.dart';
 import 'package:portfolio/sections/projects_section.dart';
+
+import 'test_helpers.dart';
 
 void main() {
   testWidgets('an AppDialog opens without throwing', (tester) async {
@@ -17,17 +18,8 @@ void main() {
     // environment (asset/image-cache contention across pumps), so this
     // can't just be a 3rd `testWidgets` case tacked onto
     // projects_section_test.dart.
-    await AtomicDesignConfig.initializeFromAsset(
-      'assets/config/app_config.json',
-    );
-    const size = Size(1280, 1200);
-    await tester.binding.setSurfaceSize(size);
-    tester.view.physicalSize = size;
-    tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.reset);
-
-    await tester.pumpWidget(const PortfolioApp());
-    await tester.pumpAndSettle();
+    await pumpPortfolioApp(tester, const Size(1280, 1200));
 
     final context = tester.element(find.byType(ProjectsSection));
     unawaited(
