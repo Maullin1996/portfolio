@@ -55,7 +55,7 @@ class AboutSection extends StatelessWidget {
     final colors = AppColors.of(context);
 
     final screenWidth = MediaQuery.sizeOf(context).width;
-    final horizontalPadding = screenWidth < 450
+    final horizontalPadding = screenWidth < 700
         ? tokens.spacing.xSmall
         : tokens.spacing.large;
     final availableWidth = screenWidth - horizontalPadding * 2;

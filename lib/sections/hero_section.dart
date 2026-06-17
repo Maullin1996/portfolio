@@ -24,7 +24,7 @@ class HeroSection extends StatelessWidget {
     // hands the child a loose-to-unbounded width, so a LayoutBuilder here
     // would just see an unusable max and the text below would never wrap.
     final screenWidth = MediaQuery.sizeOf(context).width;
-    final horizontalPadding = screenWidth < 450
+    final horizontalPadding = screenWidth < Breakpoints.navCollapse
         ? tokens.spacing.xSmall
         : tokens.spacing.large;
     final availableWidth = screenWidth - horizontalPadding * 2;
