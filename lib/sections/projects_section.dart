@@ -218,6 +218,7 @@ class _ProjectCard extends StatelessWidget {
 
   Future<void> _showDemo(BuildContext context, Project project) {
     return AppDialog.show(
+      
       context,
       title: project.title,
       confirmLabel: 'Cerrar',
@@ -259,6 +260,15 @@ class _DemoPlayerState extends State<_DemoPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    return YoutubePlayer(controller: _controller, aspectRatio: 16 / 9);
+    // AppDialog caps its content area at 90% of screen width but 80% of
+    // screen height, with no internal scrolling. A 16:9 player left free to
+    // grow with screen width has no matching height cap, so past ~1080px
+    // wide its computed height (width / 16 * 9) exceeds that 80%-height
+    // budget and the dialog's Column overflows. Capping the width keeps the
+    // height bounded regardless of screen size.
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 800),
+      child: YoutubePlayer(controller: _controller, aspectRatio: 16 / 9),
+    );
   }
 }

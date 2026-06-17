@@ -22,7 +22,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "45d5f6b3ae7da0ff2ada4b67e71aa7bd2bacb5c3"
+      resolved-ref: c2d228c7da0f5f811008dee08392754e009f20b7
       url: "https://github.com/Maullin1996/atomic_design.git"
     source: git
     version: "0.0.1"
