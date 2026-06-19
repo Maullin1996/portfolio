@@ -63,6 +63,7 @@ class AboutSection extends StatelessWidget {
     final blockWidth =
         (availableWidth - (columns - 1) * tokens.spacing.smallMedium) /
         columns;
+    final bioAlign = screenWidth >= 700 ? TextAlign.left : TextAlign.center;
 
     return Container(
       width: double.infinity,
@@ -78,6 +79,7 @@ class AboutSection extends StatelessWidget {
           ConstrainedBox(
             constraints: BoxConstraints(maxWidth: availableWidth.clamp(0, 700)),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 for (final paragraph in _bio)
                   Padding(
@@ -85,7 +87,7 @@ class AboutSection extends StatelessWidget {
                     child: AppText.bodyLg(
                       paragraph,
                       color: colors.textSecondary,
-                      textAlign: TextAlign.center,
+                      textAlign: bioAlign,
                       maxLines: 10,
                     ),
                   ),
@@ -93,16 +95,23 @@ class AboutSection extends StatelessWidget {
             ),
           ),
           SizedBox(height: tokens.spacing.large),
-          Wrap(
-            spacing: tokens.spacing.smallMedium,
-            runSpacing: tokens.spacing.smallMedium,
-            children: [
-              for (final category in _skillCategories)
-                SizedBox(
-                  width: blockWidth,
-                  child: _SkillBlock(category: category),
-                ),
-            ],
+          ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: availableWidth.clamp(0, 1080)),
+            child: Wrap(
+              spacing: tokens.spacing.smallMedium,
+              runSpacing: tokens.spacing.smallMedium,
+            
+              children: [
+                for (final category in _skillCategories)
+                  ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: 500),
+                    child: SizedBox(
+                      width: blockWidth,
+                      child: _SkillBlock(category: category),
+                    ),
+                  ),
+              ],
+            ),
           ),
         ],
       ),
@@ -121,6 +130,8 @@ class _SkillBlock extends StatelessWidget {
     final colors = AppColors.of(context);
 
     return AppCard(
+
+      color: colors.surfaceMid,
       padding: EdgeInsets.all(tokens.spacing.smallMedium),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

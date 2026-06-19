@@ -10,7 +10,7 @@ class ContactSection extends StatelessWidget {
 
   static const _links = [
     ContactLink(
-      label: 'WhatsApp',
+      label: '+57 311 3669344',
       url: 'https://wa.me/573113669344',
       assetIcon: 'assets/icons/whatsapp.svg',
     ),
@@ -24,16 +24,23 @@ class ContactSection extends StatelessWidget {
       icon: Icons.business_center_outlined,
     ),
     ContactLink(
-      label: 'Email',
+      label: 'llanosmauricio10@gmail.com',
       url: 'mailto:llanosmauricio10@gmail.com',
       icon: Icons.email_outlined,
     ),
     ContactLink(
-      label: 'GitHub',
+      label: 'Maullin1996',
       url: 'https://github.com/Maullin1996',
       assetIcon: 'assets/icons/github.svg',
     ),
   ];
+
+  /// Same reasoning as `AboutSection._columnCount`: cards need real room
+  /// before splitting into more than one column.
+  static int _columnCount(double width) {
+    if (width < 700) return 1;
+    return 2;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,13 +81,24 @@ class ContactSection extends StatelessWidget {
                 ),
               ),
               SizedBox(height: tokens.spacing.large),
-              Wrap(
-                alignment: WrapAlignment.center,
-                spacing: tokens.spacing.large,
-                runSpacing: tokens.spacing.smallMedium,
-                children: [
-                  for (final link in _links) _ContactTile(link: link),
-                ],
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxWidth: 1050,
+                ),
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: tokens.spacing.smallMedium,
+                  runSpacing: tokens.spacing.smallMedium,
+                  children: [
+                    for (final link in _links)
+                      ConstrainedBox(
+                        constraints: BoxConstraints(
+                          maxWidth: 500,
+                        ),
+                        child: _ContactTile(link: link),
+                      ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -101,27 +119,46 @@ class _ContactTile extends StatelessWidget {
     final tokens = AppTokens.of(context);
     final colors = AppColors.of(context);
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        link.assetIcon != null
-            ? AppButtons(
-                type: ButtonType.primaryImageButton,
-                assetsIcon: link.assetIcon!,
-                onPressed: () => _open(link.url),
-              )
-            : AppButtons(
-                type: ButtonType.primaryIconButton,
-                icon: link.icon,
-                iconSize: 28,
-                onPressed: () => _open(link.url),
+    return AppCard(
+      color: colors.surfaceMid,
+      padding: EdgeInsets.zero,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(tokens.radius.small),
+        onTap: () => _open(link.url),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: tokens.spacing.smallMedium,
+            vertical: tokens.spacing.small,
+          ),
+          child: Row(
+            children: [
+              link.assetIcon != null
+                  ? AppButtons(
+                      type: ButtonType.primaryImageButton,
+                      assetsIcon: link.assetIcon!,
+                      onPressed: () => _open(link.url),
+                    )
+                  : AppButtons(
+                      type: ButtonType.primaryIconButton,
+                      icon: link.icon,
+                      iconSize: 35,
+                      onPressed: () => _open(link.url),
+                    ),
+              SizedBox(width: tokens.spacing.smallMedium),
+              Expanded(
+                child: SelectableText(
+                  link.label,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: colors.textPrimary,
+                  ),
+                ),
               ),
-        SizedBox(height: tokens.spacing.xSmall),
-        GestureDetector(
-          onTap: () => _open(link.url),
-          child: AppText.label(link.label, color: colors.textSecondary),
+            ],
+          ),
         ),
-      ],
+      ),
     );
   }
 

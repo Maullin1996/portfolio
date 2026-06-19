@@ -58,8 +58,7 @@ class ProjectsSection extends StatelessWidget {
       stack: ['Flutter', 'Design System'],
       githubUrl: 'https://github.com/Maullin1996/atomic_design',
       logoAsset: 'assets/images/atomic_design_logo.webp',
-      // Sin demo todavía — el botón de reproducción queda visible pero
-      // deshabilitado hasta que grabemos el video.
+      youtubeVideoId: 'ol4CYydpMaU',
     ),
   ];
 

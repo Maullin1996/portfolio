@@ -28,8 +28,15 @@ class HeroSection extends StatelessWidget {
         ? tokens.spacing.xSmall
         : tokens.spacing.large;
     final availableWidth = screenWidth - horizontalPadding * 2;
+    // Desktop text+avatar form one block capped at this width so they read
+    // as a single centered unit instead of the text stretching to fill the
+    // full row and shoving the avatar to the far edge.
+    const heroBlockMaxWidth = 900.0;
+    final blockWidth = availableWidth < heroBlockMaxWidth
+        ? availableWidth
+        : heroBlockMaxWidth;
     final textMaxWidth = isDesktop
-        ? availableWidth - avatar.size - tokens.spacing.extraLarge
+        ? blockWidth - avatar.size - tokens.spacing.extraLarge
         : availableWidth;
 
     return Container(
@@ -42,19 +49,22 @@ class HeroSection extends StatelessWidget {
       ),
       alignment: Alignment.center,
       child: isDesktop
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                _HeroText(
-                  stack: _stack,
-                  isDesktop: true,
-                  maxWidth: textMaxWidth,
-                  onViewProjects: onViewProjects,
-                ),
-                SizedBox(width: tokens.spacing.extraLarge),
-                avatar,
-              ],
+          ? ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: blockWidth),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _HeroText(
+                    stack: _stack,
+                    isDesktop: true,
+                    maxWidth: textMaxWidth,
+                    onViewProjects: onViewProjects,
+                  ),
+                  SizedBox(width: tokens.spacing.extraLarge),
+                  avatar,
+                ],
+              ),
             )
           : Column(
               mainAxisSize: MainAxisSize.min,
