@@ -12,7 +12,12 @@ void main() {
     await pumpSection(tester, const ContactSection(), const Size(390, 800));
     expect(tester.takeException(), isNull);
 
-    for (final label in ['WhatsApp', 'LinkedIn', 'Email', 'GitHub']) {
+    for (final label in [
+      '+57 311 3669344',
+      'LinkedIn',
+      'llanosmauricio10@gmail.com',
+      'Maullin1996',
+    ]) {
       expect(find.text(label), findsOneWidget);
     }
   });
