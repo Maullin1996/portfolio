@@ -37,10 +37,6 @@ class ContactSection extends StatelessWidget {
 
   /// Same reasoning as `AboutSection._columnCount`: cards need real room
   /// before splitting into more than one column.
-  static int _columnCount(double width) {
-    if (width < 700) return 1;
-    return 2;
-  }
 
   @override
   Widget build(BuildContext context) {
