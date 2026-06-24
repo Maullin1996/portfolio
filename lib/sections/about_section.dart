@@ -12,34 +12,50 @@ class AboutSection extends StatelessWidget {
   const AboutSection({super.key});
 
   static const _bio = [
-    'Desarrollador Flutter con experiencia en la construcción de '
-        'aplicaciones móviles en entornos reales, enfocado en digitalización '
-        'de procesos, trazabilidad y automatización de operaciones.',
-    'Experiencia desarrollando soluciones end-to-end con Flutter y '
-        'Firebase, incluyendo levantamiento de requisitos, diseño de flujos '
-        'de usuario, integración con APIs y validación en producción. '
-        'Manejo de estado con Riverpod y enfoque en consistencia de datos y '
-        'usabilidad.',
-  ];
+  'Desarrollador Flutter y Node.js con experiencia en el ciclo completo '
+      'del software: levantamiento de requisitos, diseño, desarrollo, '
+      'pruebas, despliegue y soporte activo en producción.',
+  'Construyo soluciones end-to-end integrando frontend Flutter con backend '
+      'Node.js, Cloud Functions en JavaScript y Firebase, gestionando '
+      'infraestructura propia en Hetzner. Enfocado en arquitecturas '
+      'mantenibles (Arquitectura Limpia, SOLID) y calidad garantizada con '
+      'pruebas unitarias, de widgets e integración.',
+];
 
-  static const _skillCategories = [
-    SkillCategory(
-      label: 'Mobile',
-      skills: ['Flutter', 'Dart', 'Riverpod', 'Atomic Design'],
-    ),
-    SkillCategory(
-      label: 'Backend & Datos',
-      skills: ['Firebase', 'Firestore', 'Authentication', 'SQLite', 'APIs REST'],
-    ),
-    SkillCategory(
-      label: 'Testing',
-      skills: ['Unit Test', 'Widget Test', 'Integration Test'],
-    ),
-    SkillCategory(
-      label: 'Herramientas & Infra',
-      skills: ['Git', 'Docker', 'Raspberry Pi'],
-    ),
-  ];
+static const _skillCategories = [
+  SkillCategory(
+    label: 'Mobile / UI',
+    skills: ['Flutter', 'Dart', 'Riverpod', 'Provider', 'Atomic Design'],
+  ),
+  SkillCategory(
+    label: 'Backend',
+    skills: ['Node.js', 'Cloud Functions', 'Evolution API', 'REST APIs', 'HTTP'],
+  ),
+  SkillCategory(
+    label: 'Firebase',
+    skills: ['Firestore', 'Authentication', 'Storage', 'Cloud Functions', 'Analytics'],
+  ),
+  SkillCategory(
+    label: 'Arquitectura',
+    skills: ['Arquitectura Limpia', 'SOLID', 'DDD'],
+  ),
+  SkillCategory(
+    label: 'Infra / DevOps',
+    skills: ['Hetzner', 'Docker', 'Raspberry Pi', 'Git', 'GitHub Actions', 'CI/CD'],
+  ),
+  SkillCategory(
+    label: 'BD locales',
+    skills: ['SQLite'],
+  ),
+  SkillCategory(
+    label: 'IoT',
+    skills: ['ESP32', 'WiFi', 'HTTP sobre hardware'],
+  ),
+  SkillCategory(
+    label: 'Testing',
+    skills: ['Unit Test', 'Widget Test', 'Integration Test'],
+  ),
+];
 
   /// Same reasoning as `ProjectsSection._columnCount`: these blocks carry a
   /// category label plus a multi-chip `Wrap`, so they need real room before

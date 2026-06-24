@@ -22,9 +22,11 @@ void main() {
     // thrown, so `takeException` alone can't catch it. A single line is
     // ~20px tall; wrapped across several lines it should be well over that.
     const summary =
-        'Sistema de respaldo automático de evidencias de transacciones '
-        'eliminadas en WhatsApp, con persistencia en Firebase y '
-        'despliegue en Docker sobre Raspberry Pi.';
+      'Frontend en Flutter (estilo WhatsApp Web) + backend en Node.js con '
+      'Evolution API, migrado de Raspberry Pi a servidor en Hetzner. '
+      'Cloud Functions en JavaScript para procesamiento de datos, manejo '
+      'de usuarios y control de super usuario. Mantenimiento activo del '
+      'sistema en producción.';
     final height = tester.getSize(find.text(summary)).height;
     expect(
       height,

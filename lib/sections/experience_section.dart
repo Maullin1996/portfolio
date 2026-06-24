@@ -8,51 +8,67 @@ class ExperienceSection extends StatelessWidget {
   const ExperienceSection({super.key});
 
   static const _experience = [
-    WorkExperience(
-      role: 'Desarrollador Flutter',
-      company: 'WhatsApp Backup Dashboard — Medellín',
-      period: 'Sep. 2025 - Actual',
-      summary:
-          'Sistema de respaldo automático de evidencias de transacciones '
-          'eliminadas en WhatsApp, con persistencia en Firebase y '
-          'despliegue en Docker sobre Raspberry Pi.',
-      isCurrent: true,
-    ),
-    WorkExperience(
-      role: 'Desarrollador Flutter',
-      company: 'Mecca — Medellín',
-      period: 'Ene. 2026 - Feb. 2026',
-      summary:
-          'App de facturación para independientes, con reportes en PDF y '
-          'operación 100% offline mediante SQLite.',
-    ),
-    WorkExperience(
-      role: 'Desarrollador Flutter',
-      company: 'PanelApp — Medellín',
-      period: 'Abr. 2025 - Jul. 2025',
-      summary:
-          'Digitalización del control de producción: formularios '
-          'dependientes, validaciones automáticas de peso y registro '
-          'fotográfico de calidad.',
-    ),
-    WorkExperience(
-      role: 'Desarrollador Flutter',
-      company: 'Pay Track — Medellín',
-      period: 'Ene. 2025 - Jun. 2025',
-      summary:
-          'Desarrollo de nuevas funcionalidades, pruebas unitarias y de '
-          'widgets, y documentación técnica.',
-    ),
-    WorkExperience(
-      role: 'Ingeniero de Diseño y Control Dimensional',
-      company: 'Bauentech S.A.S — Girardota',
-      period: 'Dic. 2023 - Dic. 2024',
-      summary:
-          'Herramientas digitales de control y seguimiento de procesos, y '
-          'una primera app móvil en Flutter para registro de información — '
-          'el punto de partida hacia el desarrollo de software.',
-    ),
-  ];
+  WorkExperience(
+    role: 'Desarrollador Full-Stack — Flutter & Node.js',
+    company: 'Sistema de Respaldo de Transacciones vía WhatsApp — Medellín',
+    period: 'Sep. 2025 - Actual',
+    summary:
+        'Frontend en Flutter (estilo WhatsApp Web) + backend en Node.js con '
+        'Evolution API, migrado de Raspberry Pi a servidor en Hetzner. '
+        'Cloud Functions en JavaScript para procesamiento de datos, manejo '
+        'de usuarios y control de super usuario. Mantenimiento activo del '
+        'sistema en producción.',
+    isCurrent: true,
+  ),
+  WorkExperience(
+    role: 'Desarrollador Flutter & Cloud Functions',
+    company: 'PanelApp · Sistema de Trazabilidad de Producción — Medellín',
+    period: 'Abr. 2025 - Jul. 2025 | Abr. 2026 - Actual',
+    summary:
+        'Digitalización del control de producción: formularios dependientes '
+        'con Riverpod, validaciones automáticas de peso y registro fotográfico '
+        'de calidad. Cloud Functions en JavaScript para gestión de usuarios, '
+        'roles y funcionalidades de negocio. Reanudado en 2026 con nuevas '
+        'features y mantenimiento activo.',
+    isCurrent: true,
+  ),
+  WorkExperience(
+    role: 'Desarrollador Flutter',
+    company: 'Mecca — Medellín',
+    period: 'Ene. 2026 - Feb. 2026',
+    summary:
+        'App de facturación para independientes: gestión de servicios y '
+        'costos, reportes en PDF y operación 100% offline con SQLite.',
+  ),
+  WorkExperience(
+    role: 'Docente Técnico y Monitor de Laboratorio',
+    company: 'IME – Escuelas Técnicas — Medellín',
+    period: 'Jun. 2025 - Dic. 2025',
+    summary:
+        'Docente del curso Control de un Centro de Datos (monitoreo, '
+        'infraestructura, redes, bases de datos y máquinas virtuales). '
+        'Monitor de laboratorio de circuitos: desarrollé una app en Flutter '
+        'para que los estudiantes controlaran sus prototipos ESP32 de domótica '
+        'vía WiFi usando protocolo HTTP.',
+  ),
+  WorkExperience(
+    role: 'Desarrollador Flutter',
+    company: 'Pay Track — Medellín',
+    period: 'Ene. 2025 - Jun. 2025',
+    summary:
+        'Desarrollo de nuevas funcionalidades, pruebas unitarias y de '
+        'widgets, y documentación técnica en aplicación productiva.',
+  ),
+  WorkExperience(
+    role: 'Ingeniero de Diseño y Control Dimensional',
+    company: 'Bauentech S.A.S — Girardota',
+    period: 'Dic. 2023 - Dic. 2024',
+    summary:
+        'Herramientas digitales de control y seguimiento de procesos, y '
+        'una primera app móvil en Flutter para registro de información — '
+        'el punto de partida hacia el desarrollo de software.',
+  ),
+];
 
   static const _courses = [
     'Desarrollo de aplicaciones Flutter (Udemy)',

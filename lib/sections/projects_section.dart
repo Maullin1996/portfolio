@@ -18,49 +18,49 @@ class ProjectsSection extends StatelessWidget {
   const ProjectsSection({super.key});
 
   static const _projects = [
-    Project(
-      title: 'WhatsApp Backup Dashboard',
-      description:
-          'Respaldo automático de evidencias de transacciones eliminadas en '
-          'WhatsApp, con persistencia en Firebase y despliegue en Docker '
-          'sobre un servidor en Hetzner.',
-      stack: ['Flutter', 'Firebase', 'Docker', 'Raspberry Pi'],
-      githubUrl: 'https://github.com/Maullin1996/whatsapp-backup-dashboard',
-      logoAsset: 'assets/images/whatsapp_dash_board_logo.webp',
-      youtubeVideoId: 'ULHUtMTEWQU',
-    ),
-    Project(
-      title: 'Mecca',
-      description:
-          'App de facturación para independientes: gestión de servicios y '
-          'costos, reportes en PDF y operación 100% offline con SQLite.',
-      stack: ['Flutter', 'SQLite', 'PDF'],
-      githubUrl: 'https://github.com/Maullin1996/mecca-invoicing-app',
-      logoAsset: 'assets/images/mecca_logo.webp',
-      youtubeVideoId: '8Q86RFpOHBo',
-    ),
-    Project(
-      title: 'PanelApp',
-      description:
-          'Sistema de trazabilidad de producción: formularios dependientes, '
-          'validaciones automáticas de peso y registro fotográfico para '
-          'control de calidad.',
-      stack: ['Flutter', 'Riverpod', 'Firebase'],
-      githubUrl: 'https://github.com/Maullin1996/panelapp-trazabilidad',
-      logoAsset: 'assets/images/panelapp_logo.webp',
-      youtubeVideoId: 'enNVjhjFtxQ',
-    ),
-    Project(
-      title: 'Atomic Design',
-      description:
-          'El design system propio que usé para construir este portafolio: '
-          'átomos, moléculas y organismos reutilizables en Flutter.',
-      stack: ['Flutter', 'Design System'],
-      githubUrl: 'https://github.com/Maullin1996/atomic_design',
-      logoAsset: 'assets/images/atomic_design_logo.webp',
-      youtubeVideoId: 'ol4CYydpMaU',
-    ),
-  ];
+  Project(
+    title: 'WhatsApp Backup Dashboard',
+    description:
+        'Frontend Flutter (estilo WhatsApp Web) + backend Node.js con '
+        'Evolution API. Migrado de Raspberry Pi a Hetzner. Cloud Functions '
+        'para procesamiento de datos y gestión de usuarios.',
+    stack: ['Flutter', 'Node.js', 'Firebase', 'Cloud Functions', 'Evolution API', 'Hetzner', 'Docker'],
+    githubUrl: 'https://github.com/Maullin1996/whatsapp-backup-dashboard',
+    logoAsset: 'assets/images/whatsapp_dash_board_logo.webp',
+    youtubeVideoId: 'ULHUtMTEWQU',
+  ),
+  Project(
+    title: 'PanelApp',
+    description:
+        'Sistema de trazabilidad de producción: formularios dependientes '
+        'con Riverpod, validaciones automáticas de peso, registro fotográfico '
+        'y Cloud Functions para gestión de usuarios y roles.',
+    stack: ['Flutter', 'Riverpod', 'Firebase', 'Cloud Functions', 'Node.js'],
+    githubUrl: 'https://github.com/Maullin1996/panelapp-trazabilidad',
+    logoAsset: 'assets/images/panelapp_logo.webp',
+    youtubeVideoId: 'enNVjhjFtxQ',
+  ),
+  Project(
+    title: 'Mecca',
+    description:
+        'App de facturación para independientes: gestión de servicios y '
+        'costos, reportes en PDF y operación 100% offline con SQLite.',
+    stack: ['Flutter', 'SQLite', 'PDF'],
+    githubUrl: 'https://github.com/Maullin1996/mecca-invoicing-app',
+    logoAsset: 'assets/images/mecca_logo.webp',
+    youtubeVideoId: '8Q86RFpOHBo',
+  ),
+  Project(
+    title: 'Atomic Design',
+    description:
+        'El design system propio que usé para construir este portafolio: '
+        'átomos, moléculas y organismos reutilizables en Flutter.',
+    stack: ['Flutter', 'Design System'],
+    githubUrl: 'https://github.com/Maullin1996/atomic_design',
+    logoAsset: 'assets/images/atomic_design_logo.webp',
+    youtubeVideoId: 'ol4CYydpMaU',
+  ),
+];
 
   /// Unlike `AppGridView`'s generic 360/600/840 thresholds, these cards carry
   /// a title, a multi-line description, tech chips, and two action buttons —

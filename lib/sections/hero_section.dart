@@ -10,7 +10,7 @@ class HeroSection extends StatelessWidget {
 
   const HeroSection({super.key, required this.onViewProjects});
 
-  static const _stack = ['Flutter', 'Dart', 'Firebase', 'Riverpod', 'SQLite'];
+  static const _stack = ['Flutter', 'Node.js', 'Firebase', 'Riverpod', 'Cloud Functions', 'SQLite'];
 
   @override
   Widget build(BuildContext context) {
@@ -169,9 +169,10 @@ class _HeroText extends StatelessWidget {
         ConstrainedBox(
           constraints: constraints,
           child: AppText.bodyLg(
-            'Construyo apps móviles end-to-end con Flutter y Firebase: desde el '
-            'levantamiento de requisitos hasta la validación en producción, con '
-            'foco en digitalizar procesos reales y automatizar operaciones.',
+            'Construyo soluciones end-to-end con Flutter, Node.js y Firebase: '
+            'frontend móvil, backend propio, Cloud Functions e infraestructura '
+            'en Hetzner — desde el levantamiento de requisitos hasta el '
+            'mantenimiento en producción.',
             color: colors.textSecondary,
             textAlign: align,
             maxLines: 8,
