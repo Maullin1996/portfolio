@@ -300,9 +300,9 @@ class _EducationCard extends StatelessWidget {
           Wrap(
             spacing: tokens.spacing.xSmall,
             runSpacing: tokens.spacing.xSmall,
-            children: const [
-              AppChip(label: 'Español — Nativo'),
-              AppChip(label: 'Inglés — B1'),
+            children: [
+              AppChip(label: 'Español — Nativo', backgroundColor: colors.primary, textColor: colors.onPrimary),
+              AppChip(label: 'Inglés — B1', backgroundColor: colors.primary, textColor: colors.onPrimary),
             ],
           ),
         ],
